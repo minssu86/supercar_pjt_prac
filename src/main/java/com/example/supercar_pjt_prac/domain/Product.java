@@ -1,2 +1,8 @@
-package com.example.supercar_pjt_prac.domain;public class Product {
+package com.example.supercar_pjt_prac.domain;
+
+
+public class Product {
+
+    
+
 }
