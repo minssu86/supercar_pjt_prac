@@ -1,10 +1,12 @@
 package com.example.supercar_pjt_prac.domain.user;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -24,10 +26,10 @@ public class Dealer {
     private String dlrAttachment;
     @Column(nullable = false)
     private String dlrAttachment2;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "guild_seq", nullable = false)
     private Guild guild;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "com_seq", nullable = false)
     private Company company;
 

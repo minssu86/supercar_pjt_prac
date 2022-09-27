@@ -1,4 +1,4 @@
-package com.example.supercar_pjt_prac.domain.post.product;
+package com.example.supercar_pjt_prac.domain.board.product;
 
 import javax.persistence.*;
 
@@ -11,7 +11,7 @@ public class Model {
     @Column(nullable = false)
     private String modelName;
     private String modelTrim;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_seq", nullable = false)
     private Brand brand;
 }

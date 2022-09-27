@@ -1,4 +1,4 @@
-package com.example.supercar_pjt_prac.domain.post.paparazzi;
+package com.example.supercar_pjt_prac.domain.board.paparazzi;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +16,7 @@ public class PaparazziAttachment {
     private Long pattSeq;
     @Column(nullable = false)
     private String pattAttachementUrl;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brd_seq", nullable = false)
     private Paparazzi paparazzi;
 

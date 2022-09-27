@@ -1,4 +1,4 @@
-package com.example.supercar_pjt_prac.domain.post;
+package com.example.supercar_pjt_prac.domain.board;
 
 import com.example.supercar_pjt_prac.domain.Comment;
 import com.example.supercar_pjt_prac.domain.Timestamped;
@@ -28,15 +28,13 @@ public abstract class Board extends Timestamped {
     private int brdCmtCount;
     private int brdBlameCount;
     private LocalDateTime modifiedDate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ca_seq")
     private Category category;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_seq")
     private User user;
-
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Comment> comments = new ArrayList<Comment>();
 
     public void setCategory(Category category){

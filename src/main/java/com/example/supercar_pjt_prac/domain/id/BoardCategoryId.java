@@ -1,7 +1,7 @@
 package com.example.supercar_pjt_prac.domain.id;
 
-import com.example.supercar_pjt_prac.domain.post.product.ProductCategory;
-import com.example.supercar_pjt_prac.domain.post.product.Product;
+import com.example.supercar_pjt_prac.domain.board.product.ProductCategory;
+import com.example.supercar_pjt_prac.domain.board.product.Product;
 import lombok.Data;
 
 import javax.persistence.Embeddable;

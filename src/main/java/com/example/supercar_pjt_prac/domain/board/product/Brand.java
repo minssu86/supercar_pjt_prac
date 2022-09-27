@@ -1,4 +1,4 @@
-package com.example.supercar_pjt_prac.domain.post.product;
+package com.example.supercar_pjt_prac.domain.board.product;
 
 import javax.persistence.*;
 

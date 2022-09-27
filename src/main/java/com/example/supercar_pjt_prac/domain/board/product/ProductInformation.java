@@ -1,6 +1,4 @@
-package com.example.supercar_pjt_prac.domain.post.product;
-
-import com.example.supercar_pjt_prac.domain.user.User;
+package com.example.supercar_pjt_prac.domain.board.product;
 
 import javax.persistence.*;
 
@@ -20,10 +18,10 @@ public class ProductInformation {
     private String pinfColor;
     private Boolean pinfAccidentHistory;
     private  PinfFuel pinfFuel;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "model_seq")
     private Model model;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "brd_seq")
     private Product product;
 

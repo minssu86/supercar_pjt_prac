@@ -2,9 +2,14 @@ package com.example.supercar_pjt_prac.domain.user;
 
 import com.example.supercar_pjt_prac.domain.Timestamped;
 import com.example.supercar_pjt_prac.domain.user.Dealer;
+import lombok.*;
 
 import javax.persistence.*;
 
+@AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@Getter
 @Entity
 @Table(name = "\"user\"")
 public class User extends Timestamped {
@@ -28,7 +33,7 @@ public class User extends Timestamped {
     @Column(nullable = false)
     private String userRole;
     private String userSocial;
-    @OneToOne(mappedBy =  "user")
+    @OneToOne(mappedBy =  "user", fetch = FetchType.LAZY)
     private Dealer dealer;
 
 }

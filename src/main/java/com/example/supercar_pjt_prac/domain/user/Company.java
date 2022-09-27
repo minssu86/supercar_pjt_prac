@@ -1,12 +1,14 @@
 package com.example.supercar_pjt_prac.domain.user;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
 @Getter
 @Entity
 public class Company {
@@ -22,7 +24,7 @@ public class Company {
     private String comRegNum;
     @Column(nullable = false)
     private String comPhone;
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Dealer> dealers = new ArrayList<Dealer>();
 
     public void addDealer (Dealer dealer){

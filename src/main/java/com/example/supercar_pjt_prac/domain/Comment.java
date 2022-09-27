@@ -1,8 +1,6 @@
 package com.example.supercar_pjt_prac.domain;
 
-import com.example.supercar_pjt_prac.domain.post.Board;
-import com.example.supercar_pjt_prac.domain.post.magazine.Magazine;
-import com.example.supercar_pjt_prac.domain.post.paparazzi.Paparazzi;
+import com.example.supercar_pjt_prac.domain.board.Board;
 import com.example.supercar_pjt_prac.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,11 +20,10 @@ public class Comment extends Timestamped {
     private String cmtContents;
     @Column(nullable = false)
     private Boolean isDelete;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brd_seq", nullable = false)
     private Board board;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_seq", nullable = false)
     private User user;
 

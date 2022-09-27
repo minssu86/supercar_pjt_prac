@@ -1,6 +1,6 @@
-package com.example.supercar_pjt_prac.domain.post.paparazzi;
+package com.example.supercar_pjt_prac.domain.board.paparazzi;
 
-import com.example.supercar_pjt_prac.domain.post.Board;
+import com.example.supercar_pjt_prac.domain.board.Board;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -14,7 +14,7 @@ public class Paparazzi extends Board {
 
     @Enumerated(value = EnumType.STRING)
     private PrzRating przRating;
-    @OneToMany(mappedBy = "paparazzi")
+    @OneToMany(mappedBy = "paparazzi", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<PaparazziAttachment> paparazziAttachments = new ArrayList<PaparazziAttachment>();
 
     public void addPattAttachment (PaparazziAttachment paparazziAttachment){

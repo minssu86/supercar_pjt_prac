@@ -1,6 +1,6 @@
 package com.example.supercar_pjt_prac.domain.id;
 
-import com.example.supercar_pjt_prac.domain.post.Board;
+import com.example.supercar_pjt_prac.domain.board.Board;
 import com.example.supercar_pjt_prac.domain.user.User;
 import lombok.Data;
 

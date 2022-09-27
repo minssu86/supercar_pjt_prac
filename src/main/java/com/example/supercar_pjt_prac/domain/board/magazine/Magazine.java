@@ -1,12 +1,9 @@
-package com.example.supercar_pjt_prac.domain.post.magazine;
+package com.example.supercar_pjt_prac.domain.board.magazine;
 
-import com.example.supercar_pjt_prac.domain.post.Board;
+import com.example.supercar_pjt_prac.domain.board.Board;
 import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class Magazine extends Board {
 
     @Column(nullable = false)
     private String mgzBannerImageUrl;
-    @OneToMany(mappedBy = "magazine")
+    @OneToMany(mappedBy = "magazine", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<MagazineAttachment> magazineAttachments = new ArrayList<MagazineAttachment>();
 
     public void addMgzAttachment (MagazineAttachment magazineAttachment){

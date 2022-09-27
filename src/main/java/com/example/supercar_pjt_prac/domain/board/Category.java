@@ -1,4 +1,4 @@
-package com.example.supercar_pjt_prac.domain.post;
+package com.example.supercar_pjt_prac.domain.board;
 
 import lombok.Getter;
 
@@ -15,7 +15,7 @@ public class Category {
     private Long caSeq;
     @Column(nullable = false)
     private String caName;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Board> boards = new ArrayList<Board>();
 
     public void addBoard (Board board){

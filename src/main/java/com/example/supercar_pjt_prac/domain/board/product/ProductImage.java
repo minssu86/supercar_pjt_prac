@@ -1,4 +1,4 @@
-package com.example.supercar_pjt_prac.domain.post.product;
+package com.example.supercar_pjt_prac.domain.board.product;
 
 
 import lombok.Getter;
@@ -13,7 +13,7 @@ public class ProductImage {
     private Long pdiSeq;
     @Column(nullable = false)
     private String pdiUrl;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brd_seq", nullable = false)
     private Product product;
 

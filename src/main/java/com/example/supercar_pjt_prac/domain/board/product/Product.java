@@ -1,7 +1,6 @@
-package com.example.supercar_pjt_prac.domain.post.product;
+package com.example.supercar_pjt_prac.domain.board.product;
 
-import com.example.supercar_pjt_prac.domain.post.Board;
-import com.example.supercar_pjt_prac.domain.user.Dealer;
+import com.example.supercar_pjt_prac.domain.board.Board;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -31,9 +30,9 @@ public class Product extends Board {
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private PdtSellType pdtSellType;
-    @OneToOne(mappedBy = "product")
+    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
     private ProductInformation productInformation;
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<ProductImage> productImages = new ArrayList<ProductImage>();
 
     public void addProductImage (ProductImage productImage){
