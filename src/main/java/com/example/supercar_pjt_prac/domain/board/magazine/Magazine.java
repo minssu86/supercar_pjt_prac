@@ -1,12 +1,18 @@
 package com.example.supercar_pjt_prac.domain.board.magazine;
 
 import com.example.supercar_pjt_prac.domain.board.Board;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//@AllArgsConstructor
+//@SuperBuilder
+//@RequiredArgsConstructor
 @Entity
 @Getter
 @DiscriminatorValue("M")

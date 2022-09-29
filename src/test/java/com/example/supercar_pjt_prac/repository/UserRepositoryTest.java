@@ -9,17 +9,18 @@ import com.example.supercar_pjt_prac.repository.user.DealerRepository;
 import com.example.supercar_pjt_prac.repository.user.GuildRepository;
 import com.example.supercar_pjt_prac.repository.user.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.Name;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Rollback(value = false)
 @DataJpaTest
-public class RepositoryTest {
+public class UserRepositoryTest {
 
     @Autowired
     UserRepository userRepository;
@@ -41,12 +42,29 @@ public class RepositoryTest {
             .userRole("권한")
             .build();
 
+    Guild guild = Guild.builder()
+            .guildName("조합명")
+            .guildAddress("조합 주소")
+            .guildRegNum("조합 등록번호")
+            .guildPhone("조합 사무실 번호")
+            .build();
+
+    Company company = Company.builder()
+            .comName("회사명")
+            .comAddress("회사 주소")
+            .comRegNum("사업자 등록번호")
+            .comPhone("사무실 번호")
+            .build();
+
     @BeforeEach
     void beforeEach(){
         userRepository.save(user);
+        guildRepository.save(guild);
+        companyRepository.save(company);
     }
 
     @Test
+    @DisplayName("유저 테스트")
     void userTest() {
         // Given
         // When
@@ -71,31 +89,18 @@ public class RepositoryTest {
     }
 
     @Test
-    void dealerTest() {
+    @DisplayName("딜러,상사,조합 테스트")
+    void dealerAndCompanyAndGuildTest() {
 
         // Given
         User user = userRepository.findById(1L).orElseThrow(
                 () -> new NullPointerException("널")
         );
 
-        Guild guild = Guild.builder()
-                .guildName("조합명")
-                .guildAddress("조합 주소")
-                .guildRegNum("조합 등록번호")
-                .guildPhone("조합 사무실 번호")
-                .build();
-        guildRepository.save(guild);
         guild = guildRepository.findById(1L).orElseThrow(
                 () -> new NullPointerException("null")
         );
 
-        Company company = Company.builder()
-                .comName("회사명")
-                .comAddress("회사 주소")
-                .comRegNum("사업자 등록번호")
-                .comPhone("사무실 번호")
-                .build();
-        companyRepository.save(company);
         company = companyRepository.findById(1L).orElseThrow(
                 () -> new NullPointerException("null")
         );
@@ -115,10 +120,16 @@ public class RepositoryTest {
         dealerRepository.save(dealer);
 
         // When
-
+        Dealer result = dealerRepository.findById(user.getUserSeq()).orElseThrow(
+                () -> new NullPointerException("null")
+        );
         // Then
-
+        assertThat(result).isEqualTo(dealer);
+        assertThat(result.getDlrName()).isEqualTo("딜러이름");
+        assertThat(result.getCompany()).isEqualTo(company);
+        assertThat(result.getGuild()).isEqualTo(guild);
+        assertThat(result.getCompany().getComName()).isEqualTo("회사명");
+        assertThat(result.getGuild().getGuildName()).isEqualTo("조합명");
     }
-
 
 }
