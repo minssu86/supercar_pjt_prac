@@ -8,10 +8,8 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@SuperBuilder
-//@RequiredArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @DiscriminatorValue("D")
 public class Download extends Board{

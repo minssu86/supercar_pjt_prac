@@ -16,6 +16,8 @@ import org.springframework.boot.context.properties.bind.Name;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Rollback(value = false)
@@ -47,6 +49,7 @@ public class UserRepositoryTest {
             .guildAddress("조합 주소")
             .guildRegNum("조합 등록번호")
             .guildPhone("조합 사무실 번호")
+            .dealers(new ArrayList<>())
             .build();
 
     Company company = Company.builder()
@@ -54,6 +57,7 @@ public class UserRepositoryTest {
             .comAddress("회사 주소")
             .comRegNum("사업자 등록번호")
             .comPhone("사무실 번호")
+            .dealers(new ArrayList<>())
             .build();
 
     @BeforeEach
@@ -88,8 +92,9 @@ public class UserRepositoryTest {
 
     }
 
-    @Test
+
     @DisplayName("딜러,상사,조합 테스트")
+    @Test
     void dealerAndCompanyAndGuildTest() {
 
         // Given
@@ -111,11 +116,9 @@ public class UserRepositoryTest {
                 .dlrNumber("딜러번호")
                 .dlrAttachment("딜러증 앞")
                 .dlrAttachment2("딜러증 뒤")
-                .guild(guild)
-                .company(company)
                 .build();
-//        dealer.setGuild(guild);
-//        dealer.setCompany(company);
+        dealer.setGuild(guild);
+        dealer.setCompany(company);
 
         dealerRepository.save(dealer);
 

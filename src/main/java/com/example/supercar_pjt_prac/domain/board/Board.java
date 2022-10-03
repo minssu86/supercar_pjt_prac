@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@SuperBuilder
-//@RequiredArgsConstructor
+
+@NoArgsConstructor
+@SuperBuilder
+@AllArgsConstructor
 @Entity
 @Getter
 @Setter
