@@ -1,6 +1,6 @@
 package com.example.supercar_pjt_prac.domain.board;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +8,9 @@ import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Category {
 
     @Id
@@ -15,8 +18,8 @@ public class Category {
     private Long caSeq;
     @Column(nullable = false)
     private String caName;
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<Board> boards = new ArrayList<Board>();
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<Board> boards = new ArrayList<>();
 
     public void addBoard (Board board){
         this.boards.add(board);
